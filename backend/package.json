@@ -1,0 +1,23 @@
+{
+  "name": "backend",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "clean": "rm -rf ./build && echo 'Done.'",
+    "dev": "bun server.ts",
+    "build": "bun build ./server.tsx --outdir ./build"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/express": "^4.17.21",
+    "@types/uniqid": "^5.3.4"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "socket.io": "^4.7.5",
+    "uniqid": "^5.4.0"
+  }
+}
