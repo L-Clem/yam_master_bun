@@ -1,6 +1,6 @@
 import type { Socket } from 'socket.io';
 import type { queue } from '../types';
-import { Game } from '../classes/game';
+import { Game } from '../classes/game.class';
 
 /**================================================================================================
  *                                         CONSTANTS

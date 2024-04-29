@@ -13,7 +13,7 @@ This code is part of a bigger project that makes an application to play the Yam 
 - Bun >= 1.1.6 (https://bun.sh/docs/installation)
 
 == Why rewrite?
-I rewrote the base written by Julien simply to reappropriate myself the code, understand it more finely and challenge myself on an aspect that interested me.
+I rewrote the base written by Julien simply to reappropriate myself the code, understand it more finely and challenge myself on an aspect that interested me, trying out Typescript. This work is not intended to simplify or improve the 'code quality' of what has already been done. It will therefore be a mix of OOP and procedural programming.
 
 == Features
 
@@ -35,13 +35,18 @@ You can activate the dev features of the backend by setting this variable to "de
 1. 
 
 == Architecture
-[plantuml]   
-.... 
+////
 @startuml
-Class01 <|-- Class02
-Class03 *-- Class04
-Class05 o-- Class06
-Class07 .. Class08
-Class09 -- Class10
+class Game
+class Timer
+class Dice
+class Deck
+class Board
+class Choice
+class Pawn
+class Score
+
+Game ..> Timer
 @enduml
-....
+////
+
