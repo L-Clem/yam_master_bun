@@ -45,5 +45,5 @@ You can activate the dev features of the backend by setting this variable to "de
 
 == Class Diagram
 
-image::https://www.plantuml.com/plantuml/png/SoWkIImgAStDuKhEIImkLd1Fp4s5CaCoSrEBe6oNpEHK63CrEHkck2Wp1SeCo4o5gmXEpY-2iGDo4YlXfZYdvkHmSN61x53GqjM5s03dGjGY-13ZGGI81zKCKGCIW5g9483QYn20E9KBH8Au44zmEQJcfG3z2m00[]
+image::https://www.plantuml.com/plantuml/png/JSqn2W9138NX_fqYjR0Ni5fGs5RG2mpPXmGpgsHc2n7lBiR2RGBV8_2FhPVeQtL0lRGcH-fDNX1v69LDzc9BvvM1Dp2LIjaDWroiCluyUNbkFOND-9xKWUx0xoU7izw3co6ZGAQJfiJ8PLwhVm00[]
 
