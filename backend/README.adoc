@@ -2,7 +2,6 @@
 Clément LAFON
 v0.2
 :toc:
-:toc-title: Table des matières
 :hide-uri-scheme:
 
 This code is part of a bigger project that makes an application to play the Yam Master.
@@ -34,3 +33,15 @@ You can activate the dev features of the backend by setting this variable to "de
 
 == Deployment
 1. 
+
+== Architecture
+[plantuml]   
+.... 
+@startuml
+Class01 <|-- Class02
+Class03 *-- Class04
+Class05 o-- Class06
+Class07 .. Class08
+Class09 -- Class10
+@enduml
+....
