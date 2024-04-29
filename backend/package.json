@@ -3,9 +3,9 @@
   "module": "index.ts",
   "type": "module",
   "scripts": {
-    "clean": "rm -rf ./build && echo 'Done.'",
-    "dev": "bun server.ts",
-    "build": "bun build ./server.tsx --outdir ./build"
+    "clean": "rm -rf ./dist",
+    "dev": "bun index.ts",
+    "build": "bun build ./index.ts --outdir ./dist"
   },
   "devDependencies": {
     "@types/bun": "latest",

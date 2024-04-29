@@ -1,0 +1,36 @@
+= Yam Master's Backend
+Clément LAFON
+v0.2
+:toc:
+:toc-title: Table des matières
+:hide-uri-scheme:
+
+This code is part of a bigger project that makes an application to play the Yam Master.
+
+
+== Technical Stack
+
+== Requirements 
+- Bun >= 1.1.6 (https://bun.sh/docs/installation)
+
+== Why rewrite?
+I rewrote the base written by Julien simply to reappropriate myself the code, understand it more finely and challenge myself on an aspect that interested me.
+
+== Features
+
+== Environment Variables
+
+This feature needs for the server to run with *Bun*. If not you will have to install the *dotenv* package and import it on the `index.js`.
+
+You can activate the dev features of the backend by setting this variable to "dev".
+
+[horizontal]
+`ENVIRONMENT`:: 
+- "dev" (development)
+- "" (production)
+
+== Run locally
+1. 
+
+== Deployment
+1. 
