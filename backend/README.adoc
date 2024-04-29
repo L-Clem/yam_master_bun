@@ -6,34 +6,44 @@ v0.3
 
 This code is part of a bigger project that makes an application to play the Yam Master.
 
-
 == Technical Stack
 
 == Requirements 
+
 - Bun >= 1.1.6 (https://bun.sh/docs/installation)
 
 == Why rewrite?
-I rewrote the base written by Julien simply to reappropriate myself the code, understand it more finely and challenge myself on an aspect that interested me, trying out Typescript. This work is not intended to simplify or improve the 'code quality' of what has already been done. It will therefore be a mix of OOP and procedural programming.
+
+I rewrote the base written by Julien simply to reappropriate myself the code, understand it more finely and challenge myself on an aspect that interested me, trying out Typescript.
+
+This work is not intended to simplify or improve the 'code quality' of what has already been done.
+It will therefore be a mix of OOP and procedural programming.
+
+For simplicity's sake, there will be no methods for all possible class actions, and some properties will be directly public for direct access.
 
 == Features
 
 == Environment Variables
 
-This feature needs for the server to run with *Bun*. If not you will have to install the *dotenv* package and import it on the `index.js`.
+This feature needs for the server to run with *Bun*.
+If not you will have to install the *dotenv* package and import it on the `index.js`.
 
 You can activate the dev features of the backend by setting this variable to "dev".
 
 [horizontal]
-`ENVIRONMENT`:: 
+`ENVIRONMENT`::
 - "dev" (development)
 - "" (production)
 
 == Run locally
-1. 
+
+1.
 
 == Deployment
-1. 
 
-== Architecture
+1.
+
+== Class Diagram
+
 image::https://www.plantuml.com/plantuml/png/SoWkIImgAStDuKhEIImkLd1Fp4s5CaCoSrEBe6oNpEHK63CrEHkck2Wp1SeCo4o5gmXEpY-2iGDo4YlXfZYdvkHmSN61x53GqjM5s03dGjGY-13ZGGI81zKCKGCIW5g9483QYn20E9KBH8Au44zmEQJcfG3z2m00[]
 

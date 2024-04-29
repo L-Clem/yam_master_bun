@@ -3,9 +3,11 @@ import * as express from "express";
 import { createServer } from "http";
 import { Server, Socket } from "socket.io";
 import uniqid from 'uniqid';
+
 // Import local modules/files
 import type { game, queue } from './types';
 import { queueJoin } from "./handlers/queue.handler";
+import { disconnect } from "./handlers/disconnect.handler";
 import { GameService, newPlayerInQueue } from "./services/game.service";
 
 /**================================================================================================
@@ -111,7 +113,7 @@ io.on('connection', socket => {
   socket.on('game.dices.lock', gameDicesLock);
   socket.on('game.choices.selected', gameChoicesSelected);
   socket.on('game.grid.selected', gameGridSelected);
-  socket.on('disconnect', disconnect);
+  socket.on('disconnect', disconnect); //TODO where to place the disconnect?
 
   
   

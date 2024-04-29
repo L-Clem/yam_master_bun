@@ -1,3 +1,6 @@
-export class Timer {
-    
+class Timer {
+
+    constructor(public time: number) {}
 }
+
+export { Timer };
