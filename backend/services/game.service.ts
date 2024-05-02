@@ -7,9 +7,9 @@ import { Game } from '../classes/game.class';
  *================================================================================================**/
 
 // Durée d'un tour en secondes
-const TURN_DURATION = 30;
+// const TURN_DURATION = 30;
 
-//TODO faire les types
+/*
 const DECK_INIT = {
   dices: [
     { id: 1, value: '', locked: true },
@@ -21,15 +21,16 @@ const DECK_INIT = {
   rollsCounter: 1,
   rollsMaximum: 3,
 };
-
+*/
+/*
 const CHOICES_INIT = {
   isDefi: false,
   isSec: false,
   idSelectedChoice: null,
   availableChoices: [],
 };
-
-//TODO  Refaire les id de la grid 
+*/
+/*
 const GRID_INIT = [
   [
     { viewContent: '1', id: 'brelan1', owner: null, canBeChecked: false },
@@ -67,7 +68,9 @@ const GRID_INIT = [
     { viewContent: '4', id: 'brelan4', owner: null, canBeChecked: false },
   ],
 ];
+*/
 
+/*
 const ALL_COMBINATIONS = [
   { value: 'Brelan1', id: 'brelan1' },
   { value: 'Brelan2', id: 'brelan2' },
@@ -83,6 +86,7 @@ const ALL_COMBINATIONS = [
   { value: 'Sec', id: 'sec' },
   { value: 'Défi', id: 'defi' },
 ];
+*/
 
 const GAME_INIT = {
   gameState: {
@@ -101,7 +105,7 @@ const GAME_INIT = {
 
 //?  transform to class?
 export const GameService = {
-  init: {
+  /*init: {
     gameState: () => {
       const game = { ...GAME_INIT };
       game['gameState']['timer'] = TURN_DURATION;
@@ -123,7 +127,7 @@ export const GameService = {
       return [...GRID_INIT];
     },
   },
-
+ */
   send: {
     forPlayer: {
       viewGameState: (playerKey, game) => {
@@ -394,25 +398,7 @@ export const GameService = {
   },
 };
 
-export function newPlayerInQueue(socket: Socket, queue: queue) {
-  queue.push(socket);
 
-  // 'queue' management
-  if (queue.length >= 2) {
-    const player1Socket = queue.shift();
-    const player2Socket = queue.shift();
-
-    if (player1Socket === undefined || player2Socket === undefined) {
-      throw new Error('No sockets in queue');
-      //TODO faire le undefined du creategame
-    }
-
-    createGame(player1Socket, player2Socket);
-    
-  } else {
-    socket.emit('queue.added', GameService.send.forPlayer.viewQueueState());
-  }
-}
 
 export function createGame(player1Socket: Socket, player2Socket: Socket) {
   // init objet (game) with this first level of structure:

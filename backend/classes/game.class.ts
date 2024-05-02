@@ -2,20 +2,23 @@ import type {choice} from '../types';
 import {Timer} from './timer.class.ts'
 import {Grid} from './grid.class.ts';
 import {Player} from './player.class.ts'
+import uniqid from "uniqid";
 
 class Game {
-    public currentTurn: string;
+    public id: string;
+    public currentTurn: Player | undefined;
     public timer: Timer;
-    public playerOne: Player;
-    public playerTwo: Player;
+    public playerOne: Player | undefined;
+    public playerTwo: Player | undefined;
     public grid: Grid;
 
 //TODO deck type
-    constructor(turnTime: number = 30) {
-        this.currentTurn = 'player:1';
+    constructor(turnTime: number) {
+        this.id = uniqid();
+        this.currentTurn = undefined;
+        this.playerOne = undefined;
+        this.playerTwo = undefined;
         this.timer = this.createTimer(turnTime);
-        this.playerOne = this.createPlayer();
-        this.playerTwo = this.createPlayer();
         this.grid = this.createGrid();
     }
 
@@ -27,9 +30,13 @@ class Game {
       return new Grid();
     }
 
-    private createPlayer(): Player {
-      return new Player();
+    public addPlayerOne(player: Player): void {
+        this.playerOne = player;
     }
+    public addPlayerTwo(player: Player): void {
+        this.playerTwo = player;
+    }
+
 }
 
 

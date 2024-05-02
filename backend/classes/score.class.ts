@@ -1,5 +1,9 @@
 class Score {
-    constructor() {}
+    public score: number;
+
+    constructor(score: number) {
+        this.score = score;
+    }
 }
 
 export {Score};

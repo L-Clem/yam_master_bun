@@ -6,7 +6,14 @@ v0.3
 
 This code is part of a bigger project that makes an application to play the Yam Master.
 
+[horizontal]
+Project source:: https://github.com/juliencouraud/yam-master-project-steps/tree/master/step-7/websocket-game-server
+
 == Technical Stack
+- Bun
+- Typescript
+- Socket.io
+- Express
 
 == Requirements 
 
@@ -45,5 +52,5 @@ You can activate the dev features of the backend by setting this variable to "de
 
 == Class Diagram
 
-image::https://www.plantuml.com/plantuml/png/JOqn2W8n54JxESMlXRs0rOB2je9U86G72Vv4-KaA4U-kIL2s6NWpB_bpBivAZGfuTJdBuYBb1P5IBSbUJkgUDBn_-v7-rlT7e6V-6Y4LNeS2zEUxQP9BYBG_Zcysl5XOqQBJWQh0S7fnzdVZjcXdWPO3WoTcfhL6_G00[]
+image::https://www.plantuml.com/plantuml/png/RO_BIaGn38RtUOeiLPWNcDNW28CxnTc9Yvf62VOYlGZ3UDxTDbLE5JU1B__N9DtbObAftW4vapFULwwCPrZWkt6iAJH6N5lxw9ybc28nP8tEkJIY1MbAjhFt-3HhBnBi55wVRkt5vIyVF_4ZYbrt7endtKKr9Gv5pzhYdJCdJgjsm_IcshimSMw6XCAlGu7nkQlDvkUTJesDZ-87ZhXFXrx-oFy_FYInq8lIdfq368xg3nGJJmqz4g3NWK8CEmwsUlS5[]
 

@@ -3,17 +3,24 @@ import type { Socket } from "socket.io";
 /**================================================================================================
  *                                         TYPES & INTERFACES
  *================================================================================================**/
-
-export interface game {
-
-}
-
-export interface gameState {
+//TODO remove?
+ interface game {
 
 }
 
-export interface choice {
+ interface gameState {
 
 }
 
-export type queue = Array<Socket>; 
+ interface choice {
+
+}
+
+type queue = Array<Socket>;
+
+type Combination = {
+    value: string,
+    id: string,
+}
+
+export type { game, gameState, choice, Combination }

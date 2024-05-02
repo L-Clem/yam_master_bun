@@ -5,10 +5,13 @@ import { Server, Socket } from "socket.io";
 import uniqid from 'uniqid';
 
 // Import local modules/files
-import type { game, queue } from './types';
+import type { game } from './types';
 import { queueJoin } from "./handlers/queue.handler";
 import { disconnect } from "./handlers/disconnect.handler";
-import { GameService, newPlayerInQueue } from "./services/game.service";
+import { GameService } from "./services/game.service";
+import {Queue} from "./classes/queue.class.ts";
+import { Player } from "./classes/player.class.ts";
+import {Game} from "./classes/game.class.ts";
 
 /**================================================================================================
  *                                         CREATE SOCKET.IO SERVER
@@ -23,28 +26,11 @@ const io = new Server(httpServer);
  *================================================================================================**/
 
 const isDev: boolean = process.env.ENVIRONMENT == "dev" ? true : false as const
-let games: Array<game> = [];
-let queue: Array<Socket> = [];
+let gamesQueue: Queue<Game> = new Queue<Game>();
+let playersQueue = new Queue<Player>();
 
-
-function createGame(player1Socket, player2Socket) {
-
-}
 
 const createGame = (player1Socket, player2Socket) => {
-
-  // init objet (game) with this first level of structure:
-  // - gameState : { .. evolutive object .. }
-  // - idGame : just in case ;)
-  // - player1Socket: socket instance key "joueur:1"
-  // - player2Socket: socket instance key "joueur:2"
-  const newGame = GameService.init.gameState();
-  newGame['idGame'] = uniqid();
-  newGame['player1Socket'] = player1Socket;
-  newGame['player2Socket'] = player2Socket;
-
-  // push game into 'games' global array
-  games.push(newGame);
 
   const gameIndex = GameService.utils.findGameIndexById(games, newGame.idGame);
 
@@ -106,9 +92,25 @@ const createGame = (player1Socket, player2Socket) => {
  *================================================================================================**/
 
 io.on('connection', socket => {
-  console.log(`[${socket.id}] socket connected`);
+  let player: Player = new Player(socket);
+  let game: Game = new Game(30);
 
-  socket.on('queue.join', queueJoin);
+  console.log(`[${socket.id}] socket connected, player created`);
+
+
+  socket.on('queue.join', () => {
+    let result: Array<Player> | void = queueJoin(playersQueue, player);
+    if (result === undefined) {
+      return;
+    }
+    game.addPlayerOne(result[0]);
+    game.addPlayerTwo(result[1]);
+    gamesQueue.addElementToQueue(game)
+    game.playerOne.socket.emit('game.start', , game.id);
+    game.playerTwo.socket.emit('game.start', , game.id);
+
+  });
+
   socket.on('game.dices.roll', gameDiceRoll);
   socket.on('game.dices.lock', gameDicesLock);
   socket.on('game.choices.selected', gameChoicesSelected);
@@ -128,6 +130,6 @@ io.on('connection', socket => {
  *                                         WEB SERVER
  *================================================================================================**/
 
-httpServer.listen(3000, function () {
+httpServer.listen(3000, () => {
   console.log('Web server and websocket listening on *:3000');
 });
