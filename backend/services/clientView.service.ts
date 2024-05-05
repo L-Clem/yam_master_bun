@@ -3,7 +3,7 @@ import type { game } from '../types';
 /**================================================================================================
  *                                         EMITER METHODS
  *================================================================================================**/
-
+/*
 export function updateClientsViewTimers(game: game): void {
   game.player1Socket.emit(
     'game.timer',
@@ -14,7 +14,8 @@ export function updateClientsViewTimers(game: game): void {
     GameService.send.forPlayer.gameTimer('player:2', game.gameState)
   );
 }
-
+*/
+/*
 export function updateClientsViewDecks(game): void {
   setTimeout(() => {
     game.player1Socket.emit(
@@ -27,6 +28,8 @@ export function updateClientsViewDecks(game): void {
     );
   }, 200);
 }
+
+ */
 
 export function updateClientsViewChoices(game): void {
   setTimeout(() => {

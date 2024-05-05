@@ -13,7 +13,7 @@ class Queue<T> {
 
     public removeFirstElementFromQueue(): T {
         if (this.elements.length === 0) {
-            throw new RangeError('No players in the queue to remove.');
+            throw new RangeError('Nothing in the queue to remove and return.');
         }
         return this.elements.shift()!;
     }

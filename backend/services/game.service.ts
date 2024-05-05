@@ -130,6 +130,7 @@ export const GameService = {
  */
   send: {
     forPlayer: {
+      /*
       viewGameState: (playerKey, game) => {
         return {
           inQueue: false,
@@ -144,13 +145,16 @@ export const GameService = {
               : game.player1Socket.id,
         };
       },
+     */
 
+      /*
       viewQueueState: () => {
         return {
           inQueue: true,
           inGame: false,
         };
       },
+      */
 
       gameTimer: (playerKey, gameState) => {
         const playerTimer =
@@ -160,6 +164,7 @@ export const GameService = {
         return { playerTimer: playerTimer, opponentTimer: opponentTimer };
       },
 
+      /*
       deckViewState: (playerKey, gameState) => {
         const deckViewState = {
           displayPlayerDeck: gameState.currentTurn === playerKey,
@@ -172,6 +177,7 @@ export const GameService = {
         };
         return deckViewState;
       },
+       */
 
       choicesViewState: (playerKey, gameState) => {
         const choicesViewState = {
@@ -195,12 +201,13 @@ export const GameService = {
       },
     },
   },
-
+  /*
   timer: {
     getTurnDuration: () => {
       return TURN_DURATION;
     },
   },
+  */
 
   dices: {
     roll: (dicesToRoll) => {
@@ -401,6 +408,7 @@ export const GameService = {
 
 
 export function createGame(player1Socket: Socket, player2Socket: Socket) {
+
   // init objet (game) with this first level of structure:
   // - gameState : { .. evolutive object .. }
   // - idGame : just in case ;)
@@ -430,6 +438,10 @@ export function createGame(player1Socket: Socket, player2Socket: Socket) {
   updateClientsViewTimers(games[gameIndex]);
   updateClientsViewDecks(games[gameIndex]);
   updateClientsViewGrid(games[gameIndex]);
+  //DONE
+
+
+
 
   // timer every second
   const gameInterval = setInterval(() => {

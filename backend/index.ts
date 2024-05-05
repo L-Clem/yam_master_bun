@@ -93,22 +93,38 @@ const createGame = (player1Socket, player2Socket) => {
 
 io.on('connection', socket => {
   let player: Player = new Player(socket);
-  let game: Game = new Game(30);
 
   console.log(`[${socket.id}] socket connected, player created`);
-
 
   socket.on('queue.join', () => {
     let result: Array<Player> | void = queueJoin(playersQueue, player);
     if (result === undefined) {
       return;
     }
-    game.addPlayerOne(result[0]);
-    game.addPlayerTwo(result[1]);
+    let game: Game = new Game(result[0], result[1], 30);
     gamesQueue.addElementToQueue(game)
-    game.playerOne.socket.emit('game.start', , game.id);
-    game.playerTwo.socket.emit('game.start', , game.id);
 
+    game.playerOne.socket.emit('game.start', game.playerOne.getGameState());
+    game.playerTwo.socket.emit('game.start', game.playerTwo.getGameState());
+
+    game.playerOne.socket.emit('game.timer', game.getPlayerTurnTimers(game.playerOne));
+    game.playerTwo.socket.emit('game.timer', game.getPlayerTurnTimers(game.playerTwo));
+
+    setTimeout(() => {
+      game.playerOne.socket.emit('game.deck.view-state', game.playerOne.getDeckState());
+      game.playerTwo.socket.emit('game.deck.view-state', game.playerTwo.getDeckState());
+        }, 200
+    );
+
+    setTimeout(() => {
+      game.playerOne.socket.emit('game.grid.view-state', game.playerOne.getGridState());
+      game.playerTwo.socket.emit('game.grid.view-state', game.playerTwo.getGameState());
+
+    }, 200)
+
+    game.timer.executeAtInterval((game: Game) => {
+
+    }, 1000)
   });
 
   socket.on('game.dices.roll', gameDiceRoll);

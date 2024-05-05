@@ -1,4 +1,5 @@
 import {Dice} from './dice.class.ts';
+import type {Game} from "./game.class.ts";
 
 class Deck {
     public pieces: number;

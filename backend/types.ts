@@ -1,4 +1,5 @@
 import type { Socket } from "socket.io";
+import type {Game} from "./classes/game.class.ts";
 
 /**================================================================================================
  *                                         TYPES & INTERFACES
@@ -23,4 +24,6 @@ type Combination = {
     id: string,
 }
 
-export type { game, gameState, choice, Combination }
+type GameInterval = (game: Game) => any;
+
+export type { game, gameState, choice, Combination, GameInterval}
