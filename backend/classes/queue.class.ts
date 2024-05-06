@@ -1,4 +1,4 @@
-import type {Player} from "./player.class.ts";
+import {Player} from "./player.class.ts";
 
 class Queue<T> {
     public elements: Array<T>;
@@ -9,6 +9,10 @@ class Queue<T> {
 
     public addElementToQueue(element: T) {
         this.elements.push(element);
+        if (element instanceof Player) {
+            element.inQueue = true;
+            element.inGame = false;
+        }
     }
 
     public removeFirstElementFromQueue(): T {

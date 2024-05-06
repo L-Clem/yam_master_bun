@@ -3,6 +3,7 @@ import {Grid} from './grid.class.ts';
 import {Player} from './player.class.ts'
 import uniqid from "uniqid";
 import {Turn} from "./turn.class.ts";
+import type {SocketId} from "socket.io-adapter/dist/in-memory-adapter";
 
 class Game {
     public id: string;
@@ -31,6 +32,13 @@ class Game {
       return new Grid();
     }
 
+    public playerInGame(id: SocketId): boolean {
+        if (this.playerOne.socket.id !== id && this.playerTwo.socket.id !== id) {
+            return false;
+        }
+        return true;
+    }
+
     public getPlayerOpponent(player: Player): Player {
         if (player.socket.id === this.playerOne.socket.id) {
             return this.playerTwo;
@@ -46,6 +54,10 @@ class Game {
             playerTimer: this.currentTurn.currentPlayer.socket.id === player.socket.id ? this.timer.startingTime : 0,
             opponentTimer: this.currentTurn.currentPlayer.socket.id !== player.socket.id ? this.timer.startingTime : 0,
         };
+    }
+
+    public switchTurn() {
+        this.currentTurn.currentPlayer = this.currentTurn.currentPlayer.socket.id === this.playerTwo.socket.id ? this.playerOne : this.playerTwo;
     }
 }
 

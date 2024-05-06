@@ -28,8 +28,7 @@ export function updateClientsViewDecks(game): void {
     );
   }, 200);
 }
-
- */
+*/
 
 export function updateClientsViewChoices(game): void {
   setTimeout(() => {

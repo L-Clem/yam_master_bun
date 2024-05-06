@@ -12,6 +12,7 @@ import { GameService } from "./services/game.service";
 import {Queue} from "./classes/queue.class.ts";
 import { Player } from "./classes/player.class.ts";
 import {Game} from "./classes/game.class.ts";
+import {View} from "./classes/view.staticClass.ts";
 
 /**================================================================================================
  *                                         CREATE SOCKET.IO SERVER
@@ -104,30 +105,58 @@ io.on('connection', socket => {
     let game: Game = new Game(result[0], result[1], 30);
     gamesQueue.addElementToQueue(game)
 
-    game.playerOne.socket.emit('game.start', game.playerOne.getGameState());
-    game.playerTwo.socket.emit('game.start', game.playerTwo.getGameState());
+    View.viewGameState(game);
+    View.updateClientsViewTimers(game);
+    View.updateClientsViewDecks(game);
+    View.updateClientsViewGrid(game);
 
-    game.playerOne.socket.emit('game.timer', game.getPlayerTurnTimers(game.playerOne));
-    game.playerTwo.socket.emit('game.timer', game.getPlayerTurnTimers(game.playerTwo));
-
-    setTimeout(() => {
-      game.playerOne.socket.emit('game.deck.view-state', game.playerOne.getDeckState());
-      game.playerTwo.socket.emit('game.deck.view-state', game.playerTwo.getDeckState());
-        }, 200
-    );
-
-    setTimeout(() => {
-      game.playerOne.socket.emit('game.grid.view-state', game.playerOne.getGridState());
-      game.playerTwo.socket.emit('game.grid.view-state', game.playerTwo.getGameState());
-
-    }, 200)
 
     game.timer.executeAtInterval((game: Game) => {
 
+      View.updateClientsViewTimers(game);
+
+      if (game.timer.currentTime === 0) {
+
+        game.timer.resetTime();
+
+        game.currentTurn.currentPlayer.deck.setDefaultDeck();
+        game.currentTurn.setDefaultChoices();
+        game.grid.resetCellsState();
+
+        game.switchTurn();
+
+        View.updateClientsViewTimers(game);
+        View.updateClientsViewDecks(game);
+        View.updateClientsViewChoices(game);
+        View.updateClientsViewGrid(game);
+      }
     }, 1000)
+
+    game.playerOne.socket.on('disconnect', () => {
+      game.timer.clearAtInterval();
+    })
+    game.playerTwo.socket.on('disconnect', () => {
+      game.timer.clearAtInterval();
+    })
   });
 
-  socket.on('game.dices.roll', gameDiceRoll);
+  socket.on('game.dices.roll', () => {
+    let game = gamesQueue.elements.find((game) => {
+          game.playerInGame(socket.id)
+        });
+    if (game === undefined){
+      return;
+    }
+
+    if (game.currentTurn.currentPlayer.deck.rollsCounter < game.currentTurn.currentPlayer.deck.rollsMaximum) {
+      game.currentTurn.currentPlayer.deck.rollDices();
+    } else {
+      game.currentTurn.currentPlayer.deck.rollDices();
+      game.currentTurn.currentPlayer.deck.lockDices();
+    }
+  });
+
+
   socket.on('game.dices.lock', gameDicesLock);
   socket.on('game.choices.selected', gameChoicesSelected);
   socket.on('game.grid.selected', gameGridSelected);

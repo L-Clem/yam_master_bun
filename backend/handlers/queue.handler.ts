@@ -13,7 +13,7 @@ function queueJoin(queue: Queue<Player>, player: Player): Array<Player> | void {
         return [queue.removeFirstElementFromQueue(), queue.removeFirstElementFromQueue()]
     }
 
-    player.socket.emit('queue.added', GameService.send.forPlayer.viewQueueState());
+    player.socket.emit('queue.added', player.getQueueState());
 
     return undefined;
 }

@@ -45,6 +45,14 @@ class Grid {
             new Cell('4', 'row1Brelan4')
         ])
         return grid;
+    };
+
+    public resetCellsState() {
+        this.cells.forEach((row) => {
+            row.forEach((cell: Cell) => {
+                cell.canBeChecked = false;
+            })
+        })
     }
 }
 

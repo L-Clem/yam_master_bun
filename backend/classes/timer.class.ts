@@ -4,7 +4,8 @@ import  {Game} from "./game.class.ts";
 class Timer {
     public startingTime: number;
     public currentTime: number;
-    private game: Game;
+    private readonly game: Game;
+    private task: globalThis.Timer | undefined;
 
     constructor(game: Game, timerDuration: number) {
         this.startingTime = timerDuration;
@@ -17,10 +18,18 @@ class Timer {
     }
 
     public executeAtInterval(callback: GameInterval, interval: number) {
-        setInterval(() => {
-            callback(this.game);
+        this.task = setInterval(() => {
             this.decreaseTimeBy(interval)
+            callback(this.game);
         }, interval);
+    }
+    public clearAtInterval() {
+        clearInterval(this.task);
+        this.task = undefined;
+    }
+
+    public resetTime() {
+        this.currentTime = this.startingTime;
     }
 }
 

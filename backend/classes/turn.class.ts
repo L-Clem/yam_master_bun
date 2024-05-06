@@ -19,9 +19,15 @@ class Turn {
         this.availableChoices = [];
         this.currentPlayer = firstPlayer;
         this.turnDuration = turnDuration;
+    };
+
+    public setDefaultChoices(){
+        this.isDefi = false;
+        this.isSec = false;
+        this.idSelectedChoice = '';
+
+        this.availableChoices = [];
     }
-
-
 }
 
 export {Turn};

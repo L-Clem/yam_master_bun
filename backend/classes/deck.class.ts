@@ -21,6 +21,26 @@ class Deck {
         }
         return dices;
     }
+
+    public setDefaultDeck(diceNumber: number = 5): void {
+        this.rollsCounter = 1;
+        this.rollsMaximum = 3;
+        this.dices = this.createDices(diceNumber);
+    }
+
+    public rollDices() {
+        this.dices = this.dices.map((dice): Dice => {
+            dice.roll();
+            return dice;
+        });
+        this.rollsCounter++;
+    }
+    public lockDices() {
+        this.dices = this.dices.map((dice): Dice => {
+            dice.locked = true;
+            return dice;
+        });
+    }
 }
 
 export {Deck};

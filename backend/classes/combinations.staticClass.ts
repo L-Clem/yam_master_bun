@@ -26,3 +26,5 @@ class Combinations {
         });
     }
 }
+
+export { Combinations };

@@ -34,6 +34,9 @@ class Player {
 
     //TODO Refaire
     public getGameState() {
+        //TODO rework game entry
+        this.inGame = true;
+        this.inQueue = false;
         return {
             inQueue: this.inQueue,
             inGame: this.inGame,
@@ -64,6 +67,15 @@ class Player {
             displayGrid: true,
             canSelectCells: this.currentGame!.currentTurn.currentPlayer.socket.id === this.socket.id && this.currentGame!.currentTurn.availableChoices.length > 0,
             grid: this.currentGame!.grid,
+        };
+    }
+
+    public getChoicesState() {
+        return {
+            displayChoices: true,
+            canMakeChoice: this.socket.id === this.currentGame!.currentTurn.currentPlayer.socket.id,
+            idSelectedChoice: this.currentGame!.currentTurn.idSelectedChoice,
+            availableChoices: this.currentGame!.currentTurn.availableChoices,
         };
     }
 }
